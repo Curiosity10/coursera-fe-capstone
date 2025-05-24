@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Layout from './components/Layout';
-import HomePage from './components/Homepage';
-import SignUpForm from './components/SignUpForm';
-import ReservationForm from './components/ReservationForm';
+import Layout from '@/components/Layout';
+import HomePage from '@/components/Homepage';
+import SignUpForm from '@/components/SignUpForm';
+import ReservationForm from '@/components/ReservationForm';
 
 const App: React.FC = () => {
   return (
@@ -26,12 +26,14 @@ const App: React.FC = () => {
         } />
         <Route path="/about" element={
           <Layout>
-            <div className="min-h-screen flex items-center justify-center">
-              <h1 className="text-4xl font-bold">About Little Lemon</h1>
-              <p className="mt-4 text-lg">
+            <section className="citrus-bg min-h-screen flex items-center justify-center">
+              <div className="bg-white bg-opacity-90 rounded-lg shadow-lg p-8 max-w-md text-center">
+              <h1 className="text-3xl font-bold text-yellow-700 mb-4">About Little Lemon</h1>
+              <p className="text-gray-800 text-lg">
                 Little Lemon is a family-owned Mediterranean restaurant located in the heart of the city. We pride ourselves on serving authentic dishes made with fresh, locally sourced ingredients.
               </p>
-            </div>
+              </div>
+            </section>
           </Layout>
         } />
         <Route path="*" element={

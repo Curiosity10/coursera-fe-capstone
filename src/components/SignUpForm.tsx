@@ -69,23 +69,24 @@ const SignUpForm: React.FC = () => {
   };
 
   return (
-    <section className="min-h-screen citrus-bg flex items-center justify-center p-4">
-      <div className="w-full max-w-md">
+    <section className="min-h-screen citrus-bg flex items-center justify-center p-4" aria-label="Sign up page">
+      <div className="w-full max-w-md" aria-labelledby="signup-header">
         {/* Logo */}
-        <div className="text-center mb-8">
+        <header className="text-center mb-8" role="banner">
           <div className="inline-flex items-center space-x-2 mb-6">
-            <div className="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center">
-              <span className="text-2xl">🍋</span>
+            <div className="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center" aria-hidden="true">
+              <span className="text-2xl" role="img" aria-label="Lemon">🍋</span>
             </div>
-            <span className="text-white text-xl font-semibold">LITTLE LEMON</span>
+            <span className="text-white text-xl font-semibold" id="logo-text">LITTLE LEMON</span>
           </div>
-        </div>
+        </header>
 
         {/* Sign Up Form */}
-        <div className="glass-morphism p-8 mb-6">
-          <h1 className="text-3xl font-bold text-white mb-8 text-center">Sign Up</h1>
+        <section className="glass-morphism p-8 mb-6" aria-label="Sign up form">
+          <h1 id="signup-header" className="text-3xl font-bold text-white mb-8 text-center">Sign Up</h1>
           
-          <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+          <form onSubmit={handleSubmit} className="space-y-6" noValidate aria-describedby="form-desc" aria-live="polite">
+            <p id="form-desc" className="sr-only">All fields are required. Password must be at least 8 characters.</p>
             {/* Full Name */}
             <div>
               <label htmlFor="fullName" className="block text-white text-sm font-medium mb-2">
@@ -100,7 +101,9 @@ const SignUpForm: React.FC = () => {
                 placeholder="Enter your name..."
                 className="form-input"
                 aria-required="true"
+                aria-invalid={!!errors.fullName}
                 aria-describedby={errors.fullName ? "fullName-error" : undefined}
+                autoComplete="name"
               />
               {errors.fullName && (
                 <p id="fullName-error" className="text-red-300 text-sm mt-1" role="alert">
@@ -123,7 +126,9 @@ const SignUpForm: React.FC = () => {
                 placeholder="Enter your email..."
                 className="form-input"
                 aria-required="true"
+                aria-invalid={!!errors.email}
                 aria-describedby={errors.email ? "email-error" : undefined}
+                autoComplete="email"
               />
               {errors.email && (
                 <p id="email-error" className="text-red-300 text-sm mt-1" role="alert">
@@ -146,7 +151,9 @@ const SignUpForm: React.FC = () => {
                 placeholder="Enter your password..."
                 className="form-input"
                 aria-required="true"
+                aria-invalid={!!errors.password}
                 aria-describedby={errors.password ? "password-error" : undefined}
+                autoComplete="new-password"
               />
               {errors.password && (
                 <p id="password-error" className="text-red-300 text-sm mt-1" role="alert">
@@ -169,7 +176,9 @@ const SignUpForm: React.FC = () => {
                 placeholder="Repeat your password..."
                 className="form-input"
                 aria-required="true"
+                aria-invalid={!!errors.repeatPassword}
                 aria-describedby={errors.repeatPassword ? "repeatPassword-error" : undefined}
+                autoComplete="new-password"
               />
               {errors.repeatPassword && (
                 <p id="repeatPassword-error" className="text-red-300 text-sm mt-1" role="alert">
@@ -179,53 +188,59 @@ const SignUpForm: React.FC = () => {
             </div>
 
             {/* Submit Button */}
-            <button type="submit" className="btn-primary w-full">
+            <button type="submit" className="btn-primary w-full" aria-label="Sign up">
               Sign Up
             </button>
           </form>
 
           {/* Social Sign Up */}
-          <div className="mt-8 space-y-4">
+          <nav className="mt-8 space-y-4" aria-label="Social sign up options">
             <button
               onClick={() => handleSocialSignUp('Google')}
               className="btn-secondary w-full flex items-center justify-center space-x-3"
+              type="button"
+              aria-label="Sign up with Google"
             >
-              <span className="text-lg">G</span>
+              <span className="text-lg" aria-hidden="true">G</span>
               <span>Sign up with Google</span>
             </button>
             
             <button
               onClick={() => handleSocialSignUp('Apple')}
               className="btn-secondary w-full flex items-center justify-center space-x-3"
+              type="button"
+              aria-label="Sign up with Apple"
             >
-              <span className="text-lg">🍎</span>
+              <span className="text-lg" aria-hidden="true">🍎</span>
               <span>Sign up with Apple</span>
             </button>
-          </div>
+          </nav>
 
           {/* Sign In Link */}
           <div className="mt-8 text-center">
             <p className="text-white">
               Already have an account?{' '}
-              <a href="/signin" className="text-yellow-400 hover:text-yellow-300 font-medium underline">
+              <a href="/signin" className="text-yellow-400 hover:text-yellow-300 font-medium underline" aria-label="Go to sign in page">
                 Sign in
               </a>
             </p>
           </div>
-        </div>
+        </section>
 
         {/* Back Button */}
-        <div className="text-center">
+        <nav className="text-center" aria-label="Back navigation">
           <button 
-            onClick={() => navigate('/')}
+            onClick={() => navigate('/')} 
             className="text-white hover:text-yellow-400 transition-colors flex items-center justify-center space-x-2 mx-auto"
+            type="button"
+            aria-label="Back to homepage"
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
             <span>Back</span>
           </button>
-        </div>
+        </nav>
       </div>
     </section>
   );
