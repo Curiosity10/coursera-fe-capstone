@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from '@/components/Layout';
 import HomePage from '@/components/Homepage';
 import SignUpForm from '@/components/SignUpForm';
-import ReservationForm from '@/components/ReservationForm';
+import BookingForm from '@/components/BookingForm';
 
 const App: React.FC = () => {
   return (
@@ -21,7 +21,7 @@ const App: React.FC = () => {
         } />
         <Route path="/reservations" element={
           <Layout showHeader={false}>
-            <ReservationForm />
+            <BookingForm />
           </Layout>
         } />
         <Route path="/about" element={

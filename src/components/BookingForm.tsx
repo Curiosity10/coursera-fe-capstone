@@ -9,7 +9,7 @@ interface ReservationData {
   specialRequests: string;
 }
 
-const ReservationForm: React.FC = () => {
+const BookingForm: React.FC = () => {
   const navigate = useNavigate();
   const [step, setStep] = useState<'form' | 'review' | 'confirmed'>('form');
   const [reservationData, setReservationData] = useState<ReservationData>({
@@ -162,4 +162,4 @@ const ReservationForm: React.FC = () => {
   );
 };
 
-export default ReservationForm;
+export default BookingForm;

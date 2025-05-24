@@ -2,13 +2,13 @@ import '@testing-library/jest-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { BrowserRouter } from 'react-router-dom';
-import ReservationForm from '../ReservationForm';
+import BookingForm from '../BookingForm';
 
 const renderWithRouter = (component: React.ReactNode) => {
   return render(<BrowserRouter>{component}</BrowserRouter>);
 };
 
-describe('ReservationForm', () => {
+describe('BookingForm', () => {
   beforeEach(() => {
     // Mock current date to ensure consistent date validation
     vi.useFakeTimers();
@@ -20,7 +20,7 @@ describe('ReservationForm', () => {
   });
 
   it('renders initial form with all required fields', () => {
-    renderWithRouter(<ReservationForm />);
+    renderWithRouter(<BookingForm />);
     
     // Check form heading
     expect(screen.getByRole('heading', { name: /book a table/i })).toBeInTheDocument();
@@ -36,7 +36,7 @@ describe('ReservationForm', () => {
   });
 
   it('allows selecting different seating options', () => {
-    renderWithRouter(<ReservationForm />);
+    renderWithRouter(<BookingForm />);
     
     const indoorRadio = screen.getByLabelText(/indoor/i);
     const outdoorRadio = screen.getByLabelText(/outdoor/i);
@@ -50,14 +50,14 @@ describe('ReservationForm', () => {
   });
 
   it('enforces minimum date selection to be today', () => {
-    renderWithRouter(<ReservationForm />);
+    renderWithRouter(<BookingForm />);
     
     const dateInput = screen.getByLabelText(/date/i);
     expect(dateInput).toHaveAttribute('min', '2025-05-24');
   });
 
   it('progresses through form steps correctly', async () => {
-    renderWithRouter(<ReservationForm />);
+    renderWithRouter(<BookingForm />);
     
     // Fill out the form
     const dateInput = screen.getByLabelText(/date/i);
@@ -88,7 +88,7 @@ describe('ReservationForm', () => {
   });
 
   it('allows editing from review step', () => {
-    renderWithRouter(<ReservationForm />);
+    renderWithRouter(<BookingForm />);
     
     // Fill and submit form
     fireEvent.change(screen.getByLabelText(/date/i), { target: { value: '2025-05-25' } });
@@ -105,7 +105,7 @@ describe('ReservationForm', () => {
   });
 
   it('updates special requests field correctly', () => {
-    renderWithRouter(<ReservationForm />);
+    renderWithRouter(<BookingForm />);
     
     const specialRequestsInput = screen.getByLabelText(/special requests/i);
     fireEvent.change(specialRequestsInput, { target: { value: 'Allergic to nuts' } });
